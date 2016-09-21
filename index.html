@@ -219,7 +219,7 @@
 					<div>
 						<div class="row">
 							<div class="12u">
-								<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+								<form method="post" action="">
 									<div>
 										<div class="row">
 											<div class="6u 12u(mobile)">
@@ -238,7 +238,7 @@
 										<div class="row 200%">
 											<div class="12u">
 												<ul class="actions">
-													<li><input type="submit" value="Verzend Bericht!" /></li>
+													<li><input type="submit" value="Verzend Bericht!"  onclick="return bericht();"/></li>
 													<li><input type="reset" value="Reset Formulier" class="alt" /></li>
 												</ul>
 											</div>
@@ -249,49 +249,13 @@
 								
 
 							</div>
-							
-							<?php
-							
-							
-							if($_POST['name'] != "")
+							<script>
+							function bericht()
 {
-$nameFromUser = $_POST['name'];
-                $emailFromUser = $_POST['email'];
-                $messageFromUser = $_POST['message'];
-                sendmail($nameFromUser, $emailFromUser, $subjectFromUser, $messageFromUser);
-                echo '<SCRIPT LANGUAGE="JavaScript">
-         <!--
-         window.alert("Bericht Succesvol Verstuurd")
-         // -->
-         </SCRIPT>';
+   alert("Je mail is verstuurd naar Bram!");
+   return true;
 }
-                              
-function sendmail($nameFromUser, $emailFromUser, $subjectFromUser, $messageFromUser)
-{
-                $to = 'ruben.vanwezenbeek@hotmail.com';
- 
-                // subject
-                $subject = "Een bericht van bramwagenaar.nl";
-                // message
-                $message = 'Je hebt een bericht via website van: ' . $nameFromUser . '
-                <br>Met Mailadres: '.$emailFromUser.'
-                  <br>
-                  <p>Het bericht: <br>' . $messageFromUser . '<br>';
- 
-                // To send HTML mail, the Content-type header must be set
-                $headers  = 'MIME-Version: 1.0' . "\r\n";
-                $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
- 
-                // Additional headers
-                $headers .= 'From: Contactsysteem TEst<noreply@test.eu>' . "\r\n";
- 
-                // Mail it
-                mail($to, $subject, $message, $headers);
-               
-                }
-               
-?>
-							
+							</script>
 						</div>
 						<div class="row">
 							<div class="12u">
