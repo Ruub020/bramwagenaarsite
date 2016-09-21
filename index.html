@@ -219,7 +219,7 @@
 					<div>
 						<div class="row">
 							<div class="12u">
-								<form method="post" action="">
+								<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 									<div>
 										<div class="row">
 											<div class="6u 12u(mobile)">
@@ -249,6 +249,49 @@
 								
 
 							</div>
+							
+							<?php
+							
+							
+							if($_POST['name'] != "")
+{
+$nameFromUser = $_POST['name'];
+                $emailFromUser = $_POST['email'];
+                $messageFromUser = $_POST['message'];
+                sendmail($nameFromUser, $emailFromUser, $subjectFromUser, $messageFromUser);
+                echo '<SCRIPT LANGUAGE="JavaScript">
+         <!--
+         window.alert("Bericht Succesvol Verstuurd")
+         // -->
+         </SCRIPT>';
+}
+                              
+function sendmail($nameFromUser, $emailFromUser, $subjectFromUser, $messageFromUser)
+{
+                $to = 'ruben.vanwezenbeek@hotmail.com';
+ 
+                // subject
+                $subject = "Een bericht van bramwagenaar.nl";
+                // message
+                $message = 'Je hebt een bericht via website van: ' . $nameFromUser . '
+                <br>Met Mailadres: '.$emailFromUser.'
+                  <br>
+                  <p>Het bericht: <br>' . $messageFromUser . '<br>';
+ 
+                // To send HTML mail, the Content-type header must be set
+                $headers  = 'MIME-Version: 1.0' . "\r\n";
+                $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+ 
+                // Additional headers
+                $headers .= 'From: Contactsysteem TEst<noreply@test.eu>' . "\r\n";
+ 
+                // Mail it
+                mail($to, $subject, $message, $headers);
+               
+                }
+               
+?>
+							
 						</div>
 						<div class="row">
 							<div class="12u">
